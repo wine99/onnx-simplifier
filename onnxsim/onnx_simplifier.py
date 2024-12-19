@@ -209,7 +209,7 @@ def simplify(
         check_ok = model_checking.compare(
             model_opt, model, check_n, test_input_shapes, input_data, custom_lib
         )
-    except (ValueError, onnx.onnx_cpp2py_export.checker.ValidationError):
+    except (ValueError, onnx.checker.ValidationError, RuntimeError):
         print("[bold magenta]Simplified model larger than 2GB. Trying to save as external data...[/bold magenta]")
         # large models try to convert through a temporary file
         with tempfile.TemporaryDirectory() as tmpdirname:
